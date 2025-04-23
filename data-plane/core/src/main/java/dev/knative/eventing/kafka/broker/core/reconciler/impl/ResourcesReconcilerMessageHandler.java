@@ -76,7 +76,7 @@ public class ResourcesReconcilerMessageHandler implements Handler<Message<Object
             // This is a safety timeout to the `reconcile` phase, there have been multiple times when libraries or our
             // components will cause the `Future` returned by `reconcile` to never complete (fail or succeed), in those
             // cases we stop reconciling resources completely.
-            vertx.setTimer(RECONCILE_TIMEOUT, v -> p.tryFail(v + "ms timeout reached"));
+            vertx.setTimer(RECONCILE_TIMEOUT, v -> p.tryFail(RECONCILE_TIMEOUT + "ms timeout reached"));
 
             try {
                 resourcesReconciler
